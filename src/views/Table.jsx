@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import {GlobalFilter} from "./GlobalFilter";
-import { useTable} from "react-table";
+import { useTable, useGlobalFilter } from "react-table";
 import "./table.css";
 
 export const Table = ({ submissions, columnNames }) => {
