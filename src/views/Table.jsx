@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import {GlobalFilter} from "./GlobalFilter";
-import { useTable, useGlobalFilter, usePagination} from "react-table";
+import { useTable} from "react-table";
 import "./table.css";
 
 export const Table = ({ submissions, columnNames }) => {
@@ -12,10 +12,8 @@ export const Table = ({ submissions, columnNames }) => {
         {
             columns,
             data,
-            initialState: { pageIndex: 0 },
         },
-        useGlobalFilter,
-        usePagination
+        useGlobalFilter
     );
 
     const {
@@ -23,19 +21,13 @@ export const Table = ({ submissions, columnNames }) => {
         getTableBodyProps,
         headerGroups,
         page,
-        nextPage,
-        previousPage,
-        canNextPage,
-        canPreviousPage,
-        pageOptions,
-        setPageSize,
-        gotoPage,
+        
         prepareRow,
         state,
         setGlobalFilter,
     } = tableInstance;
 
-    const { globalFilter, pageIndex, pageSize } = state;
+    const { globalFilter } = state;
 
     return (
         <div>
@@ -72,55 +64,6 @@ export const Table = ({ submissions, columnNames }) => {
                             })}
                             </tbody>
                         </table>
-                        <div className="pagination-container">
-              <span>
-                Page{" "}
-                  <strong>
-                  {pageIndex + 1} of {pageOptions.length}
-                </strong>{" "}
-              </span>
-                            <button
-                                className="pagination-button"
-                                onClick={previousPage}
-                                disabled={!canPreviousPage}
-                            >
-                                Previous
-                            </button>
-                            <button
-                                className="pagination-button"
-                                onClick={nextPage}
-                                disabled={!canNextPage}
-                            >
-                                Next
-                            </button>
-                            <span>
-                | Go to page:{" "}
-                                <input
-                                    type="number"
-                                    defaultValue={pageIndex + 1}
-                                    onChange={(e) => {
-                                        const page = e.target.value
-                                            ? Number(e.target.value) - 1
-                                            : 0;
-                                        gotoPage(page);
-                                    }}
-                                    style={{ width: "50px" }}
-                                />
-              </span>{" "}
-                            <select
-                                className="pagination-select"
-                                value={pageSize}
-                                onChange={(e) => {
-                                    setPageSize(Number(e.target.value));
-                                }}
-                            >
-                                {[10, 20, 30, 40, 50].map((pageSize) => (
-                                    <option key={pageSize} value={pageSize}>
-                                        Show {pageSize}
-                                    </option>
-                                ))}
-                            </select>
-                        </div>
                     </div>
                 </div>
             ) : (
