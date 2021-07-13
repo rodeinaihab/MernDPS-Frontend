@@ -12,7 +12,7 @@ export default function HomeView(props) {
     let history = useHistory();
 
     const addBook = (data) => {
-        axios.post("http://localhost:4000/api/books",  data).then((res) => {
+        axios.post("https://dps-bookfinder.herokuapp.com/api/books",  data).then((res) => {
             console.log(res);
             alert("Your book has been added successfully to the Library :)")
         })
