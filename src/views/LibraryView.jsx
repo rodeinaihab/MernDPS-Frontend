@@ -8,7 +8,7 @@ export default function LibraryView(props) {
     const [books, setBooks] = useState([]);
 
     const getBooksFromBackend = () => {
-        return axios.get("http://localhost:4000/api/books").then(({data}) => {
+        return axios.get("https://dps-bookfinder.herokuapp.com/api/books").then(({data}) => {
             return data
         })
             .catch(err => console.log(err))
